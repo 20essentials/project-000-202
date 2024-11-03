@@ -1,0 +1,73 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  height: 100dvh;
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center;
+  background-image: radial-gradient(
+    circle closest-corner,
+    transparent 30%,
+    #74c6f8
+  );
+}
+
+section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1970px;
+  height: 1076px;
+  display: flex;
+  transform: translate(-50%, -50%) scale(0.18);
+
+  @media (width <= 1111px) {
+    transform: translate(-50%, -50%) scale(0.1);
+  }
+
+  .part {
+    width: 10%;
+    height: 100%;
+    background-image: url('assets/gradient.avif');
+    background-size: cover;
+    background-attachment: fixed !important;
+    background-position: calc((var(--d)) * 11.11%);
+    animation: decrecer 4s linear infinite forwards;
+    animation-delay: calc(var(--d) * 0.4s);
+    transition: filter 0.4s ease;
+
+    &:nth-child(even) {
+      transform-origin: top;
+    }
+
+    &:nth-child(odd) {
+      transform-origin: bottom;
+    }
+  }
+
+  &:hover {
+    .part {
+      filter: hue-rotate(180deg);
+    }
+  }
+}
+
+@keyframes decrecer {
+  0% {
+    transform: scaleY(0);
+  }
+  10%,
+  90% {
+    transform: scaleY(1);
+  }
+  91% {
+    transform: scaleY(0);
+  }
+}
